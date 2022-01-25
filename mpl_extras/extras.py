@@ -1,10 +1,12 @@
 
 __all__ = [
+    "add_cbar",
     "params",
     "setup_mpl",
 ]
 
 
+from mpl_toolkits.axes_grid1 import make_axes_locatable
 from matplotlib import texmanager
 import matplotlib.pyplot as plt
 import tempfile
@@ -23,6 +25,11 @@ def setup_mpl(fontsize=16, tex=False, cache=False):
     plt.rc("text", usetex=tex)
     if cache:
         __tex_cache()
+
+
+def add_cbar(ax):
+    divider = make_axes_locatable(ax)
+    return divider.append_axes("right", size="5%", pad=0.05)
 
 
 def __tex_cache():
